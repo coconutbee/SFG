@@ -11,6 +11,7 @@
 1. 建立conda env
    ```bash
    conda create -n sd python=3.10
+   conda activate sd
    ```
 2. 安裝相依套件：
    ```bash
