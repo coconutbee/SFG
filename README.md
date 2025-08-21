@@ -8,10 +8,13 @@
 
 ## 環境準備
 
-1. 安裝 Python 3.10+。
+1. 建立conda env
+   ```bash
+   conda create -n sd python=3.10
+   ```
 2. 安裝相依套件：
    ```bash
-   pip install requests pillow opencv-python tiktoken
+   pip install -r requirements.txt
    ```
 3. 啟動 [Automatic1111 Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 或其他提供 `http://127.0
 .0.1:7860` API 的服務。
