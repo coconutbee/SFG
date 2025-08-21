@@ -6,20 +6,35 @@
 2. 使用 `beforeSD.py` 將特徵描述整理成純文字提示語。
 3. 使用 `image_generate.py` 搭配 Stable Diffusion 依提示語重新生成圖片，並輸出 Canny Edge 與結果圖片。
 
-## 環境準備
+## 使用 Stable Diffusion
 
-1. 建立conda env
+請參考 [stable-diffusion-webui-forge](https://github.com/lllyasviel/stable-diffusion-webui-forge)
+
+1. 複製repository到本地
    ```bash
+   git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git
+   ```   
+2. 建立虛擬環境並安裝相依套件
+   ```bash
+   cd stable-diffusion-webui-forge
    conda create -n sd python=3.10
    conda activate sd
-   ```
-2. 安裝相依套件：
-   ```bash
    pip install -r requirements.txt
    ```
-3. 啟動 [Automatic1111 Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 或其他提供 `http://127.0
-.0.1:7860` API 的服務。
-4. 在 `cfg.py` 內設定你的 OpenAI API Key：
+3. 啟動 Web UI
+   ```bash
+   python launch.py --api
+   ```
+4. 下載 Stable Diffusion 模型權重並放置於 `models/Stable-diffusion/` 資料夾中。
+   [下載連結](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
+   ![i1](doc/i1.png)
+   ![i2](doc/i2.png)
+   ![i3](doc/i3.png)
+5. 下載 ControlNet 模型權重並放置於 `models/ControlNet/` 資料夾中。
+   [下載連結](https://huggingface.co/lllyasviel/ControlNet-v1-1/blob/main/control_v11p_sd15_canny.pth)
+   ![i4](doc/i4.png)
+   ![i5](doc/i5.png)
+6. 在 `SFG/cfg.py` 內設定你的 OpenAI API Key：
    ```python
    def api_key():
        key = "sk-XXXX"
@@ -79,7 +94,7 @@ python clean.py
 
 - `female_prompt/`：每張圖片的 Markdown 特徵描述。
 - `test/`：可直接用於 Stable Diffusion 的文字提示語。
-- `canny_edges/`：輸入圖片的 Canny Edge 版本。
+- `canny_edges/`：輸入圖片的 Canny Edge 圖片。
 - `female_gen/`：根據提示語生成的新圖片。
 
-透過以上流程，您可以從原始的人像資料中，經由 GPT 生成文字描述，再利用 Stable Diffusion 控制網路重新創作新圖像。
+透過以上流程，您可以從原始的人像資料中，經由 GPT 生成文字描述，再利用 Stable Diffusion + ControlNet 重新創作新圖像。
