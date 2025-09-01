@@ -19,7 +19,7 @@
    cd stable-diffusion-webui-forge
    conda create -n sd python=3.10
    conda activate sd
-   pip install -r requirements.txt
+   pip install -r requirements_versions.txt
    ```
 3. 啟動 Web UI
    ```bash
